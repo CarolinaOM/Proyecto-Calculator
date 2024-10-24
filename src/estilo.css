@@ -1,29 +1,47 @@
-body{
-    padding: 0;
+html, body {
+    height: 100%;
     margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita que aparezca el scroll */
     background: linear-gradient(to right, #36BDEC, #FF338A);
+    font-family: Arial, sans-serif;
 }
 
+/* Asegura que la calculadora siempre esté centrada y visible sin generar scroll */
 .cal-grilla {
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: minmax(120px, auto) repeat(5, 1fr);
+    gap: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
 }
 
+
+/* Estilo para los botones */
 .cal-grilla > button {
     cursor: pointer;
     font-size: 2rem;
     border: 1px solid white;
     outline: none;
-    background-color: rgba(255, 255, 255, 75);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 10px; /* Botones redondeados */
+    padding: 10px;
+    transition: background-color 0.3s ease;
 }
 
+.cal-grilla > button:hover {
+    background-color: rgba(123, 129, 163, 0.699);
+}
+
+/* Estilo para la pantalla de resultados */
 .output {
-    grid-column: 1 / -1;
-    background-color: rgba(0, 0, 0, .75);
+    grid-column: 1 / -1; /* Ocupa todo el ancho de la cuadrícula */
+    background-color: rgba(0, 0, 0, 0.75);
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
@@ -31,14 +49,34 @@ body{
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all; 
+    border-radius: 10px; /* Redondeado */
 }
 
+/* Estilo para el texto dentro de la pantalla */
 .output .display {
-    color: black;
-    font-size: 1.35rem;
+    color: white;
+    font-size: 2rem; /* Ajusta el tamaño para hacerla más grande */
     text-align: right;
+    background: none;
+    border: none;
+    width: 100%;
+    outline: none;
 }
 
-.cal-grilla > button:hover {
-    background-color: rgba(123, 129, 163, 0.699);
+/* Responsive para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .cal-grilla {
+        grid-template-columns: repeat(4, 1fr); /* Mantén 4 columnas en móvil */
+        grid-template-rows: repeat(5, 60px); /* Reducimos el tamaño de las filas */
+        gap: 8px; /* Menos espacio entre botones */
+    }
+
+    .cal-grilla > button {
+        font-size: 1.5rem; /* Botones más pequeños en móvil */
+        padding: 8px;
+    }
+
+    .output .display {
+        font-size: 1.5rem; /* Texto más pequeño en la pantalla en móvil */
+    }
 }

@@ -2,12 +2,12 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Evita que aparezca el scroll */
+    overflow-y: auto; /* Permite el scroll vertical */
     background: linear-gradient(to right, #36BDEC, #FF338A);
     font-family: Arial, sans-serif;
 }
 
-/* Asegura que la calculadora siempre esté centrada y visible sin generar scroll */
+/* Asegura que la calculadora siempre esté centrada */
 .cal-grilla {
     display: grid;
     justify-content: center;
@@ -21,7 +21,6 @@ html, body {
     margin: auto;
 }
 
-
 /* Estilo para los botones */
 .cal-grilla > button {
     cursor: pointer;
@@ -29,7 +28,7 @@ html, body {
     border: 1px solid white;
     outline: none;
     background-color: rgba(255, 255, 255, 0.75);
-    border-radius: 10px; /* Botones redondeados */
+    border-radius: 10px;
     padding: 10px;
     transition: background-color 0.3s ease;
 }
@@ -49,10 +48,9 @@ html, body {
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all; 
-    border-radius: 10px; /* Redondeado */
+    border-radius: 10px;
 }
 
-/* Estilo para el texto dentro de la pantalla */
 .output .display {
     color: white;
     font-size: 2rem; /* Ajusta el tamaño para hacerla más grande */
@@ -63,20 +61,26 @@ html, body {
     outline: none;
 }
 
-/* Responsive para pantallas pequeñas (móviles) */
-@media (max-width: 600px) {
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    body {
+        overflow-y: scroll; /* Permitir el scroll vertical en pantallas pequeñas */
+    }
+
     .cal-grilla {
-        grid-template-columns: repeat(4, 1fr); /* Mantén 4 columnas en móvil */
-        grid-template-rows: repeat(5, 60px); /* Reducimos el tamaño de las filas */
-        gap: 8px; /* Menos espacio entre botones */
+        grid-template-columns: repeat(4, 1fr); /* Mantén 4 columnas */
+        grid-template-rows: repeat(5, minmax(80px, 1fr)); /* Ajusta el tamaño de las filas */
+        gap: 5px; /* Reduce el espacio entre los botones */
+        padding: 10px;
+        max-width: 100%; /* Asegúrate de usar todo el ancho de la pantalla */
     }
 
     .cal-grilla > button {
-        font-size: 1.5rem; /* Botones más pequeños en móvil */
-        padding: 8px;
+        font-size: 1.5rem; /* Tamaño reducido para botones */
+        padding: 5px;
     }
 
     .output .display {
-        font-size: 1.5rem; /* Texto más pequeño en la pantalla en móvil */
+        font-size: 1.3rem; /* Texto más pequeño en la pantalla en móvil */
     }
 }
